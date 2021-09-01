@@ -1,0 +1,22 @@
+{
+  "name": "react-magic-sdk",
+  "version": "0.1.0",
+  "description": "Magic react library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:Shikanime/react-magic-sdk.git",
+  "author": "Shikanime Deva <deva.shikanime@protonmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.19",
+    "esbuild": "^0.12.24",
+    "magic-sdk": "^5.0.0",
+    "react": "^17.0.2",
+    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-esbuild": "^4.5.0"
+  },
+  "peerDependencies": {
+    "magic-sdk": "^5.0.0",
+    "react": "^17.0.2"
+  }
+}
