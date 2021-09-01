@@ -10,6 +10,7 @@ import { useEffect, useMemo, useState } from "react";
 
 export interface Magic {
   idToken: string | null;
+  isPending: boolean;
   isLoggedIn: boolean;
   userMetadata: MagicUserMetadata | null;
   loginWithCredential(credentialOrQueryString?: string): Promise<void>;
@@ -33,6 +34,7 @@ export function useMagic({ apiKey, ...options }: MagicSDKConfiguration): Magic {
     [apiKey, options]
   );
   const [idToken, setIdToken] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState<boolean>(true);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userMetadata, setUserMetadata] = useState<MagicUserMetadata | null>(
     null
@@ -40,6 +42,7 @@ export function useMagic({ apiKey, ...options }: MagicSDKConfiguration): Magic {
   useEffect(() => {
     magic.user.isLoggedIn().then((isLoggedIn) => {
       setIsLoggedIn(isLoggedIn);
+      setIsPending(false);
     });
   }, []);
   useEffect(() => {
@@ -54,6 +57,7 @@ export function useMagic({ apiKey, ...options }: MagicSDKConfiguration): Magic {
   }, [isLoggedIn]);
   return {
     idToken,
+    isPending,
     isLoggedIn,
     userMetadata,
     async loginWithCredential(credentialOrQueryString?: string) {
